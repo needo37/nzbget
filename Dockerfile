@@ -9,8 +9,9 @@ RUN ln -sf /usr/share/zoneinfo/CST6CDT /etc/localtime
 RUN usermod -u 99 nobody
 RUN usermod -g 100 nobody
 
+RUN sed -i 's/main$/main non-free/' /etc/apt/sources.list
 RUN apt-get update -q
-RUN apt-get install -qy nzbget
+RUN apt-get install -qy unrar nzbget
 
 #Path to a directory that only contains the nzbget.conf
 VOLUME /config
