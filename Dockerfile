@@ -14,4 +14,7 @@ VOLUME /downloads
 
 EXPOSE 6789
 
-ENTRYPOINT ["/usr/bin/nzbget", "-c", "/config/nzbget.conf"]
+# For some unknown reason nzbget does not work with ENTRYPOINT
+ADD start.sh /start.sh
+
+CMD ["/bin/bash", "/start.sh"]
