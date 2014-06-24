@@ -6,12 +6,6 @@ if [ -f /config/nzbget.conf ]; then
 else
   cp /usr/share/doc/nzbget/examples/nzbget.conf.gz /config/
   gzip -d /config/nzbget.conf.gz
-fi
-
-# Check to make sure downloads/nzbget exists
-if [ -d /downloads/dst ]; then
-  echo "downloads folder exists"
-else
   mkdir -p /downloads/dst
 fi
 
