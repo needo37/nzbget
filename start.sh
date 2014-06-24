@@ -9,10 +9,10 @@ else
 fi
 
 # Check to make sure downloads/nzbget exists
-if [ -d /downloads/nzbget ]; then
+if [ -d /downloads/dst ]; then
   echo "downloads folder exists"
 else
-  mkdir -p /downloads/nzbget
+  mkdir -p /downloads/dst
 fi
 
 # Start nzbget
