@@ -1,14 +1,19 @@
-FROM debian:jessie
+FROM phusion/baseimage:0.9.11
 MAINTAINER needo <needo@superhero.org>
 ENV DEBIAN_FRONTEND noninteractive
+
+# Set correct environment variables
+ENV HOME /root
+
+# Use baseimage-docker's init system
+CMD ["/sbin/my_init"]
 
 # Fix a Debianism of the nobody's uid being 65534
 RUN usermod -u 99 nobody
 RUN usermod -g 100 nobody
 
-RUN sed -i 's/main$/main non-free/' /etc/apt/sources.list
 RUN apt-get update -q
-RUN apt-get install -qy unrar nzbget
+RUN apt-get install -qy unrar-free nzbget
 
 #Path to a directory that only contains the nzbget.conf
 VOLUME /config
@@ -16,9 +21,15 @@ VOLUME /downloads
 
 EXPOSE 6789
 
-# For some unknown reason nzbget does not work with ENTRYPOINT
-ADD start.sh /start.sh
+# Install sample nzbget.conf if needed
+ADD nzbget.conf /tmp/nzbget.conf
 
-# Let's not run nzbget as root
-USER nobody
-CMD ["/bin/bash", "/start.sh"]
+# Add firstrun.sh to execute during container startup
+RUN mkdir -p /etc/my_init.d
+ADD firstrun.sh /etc/my_init.d/firstrun.sh
+RUN chmod +x /etc/my_init.d/firstrun.sh
+
+# Add nzbget to runit
+RUN mkdir /etc/service/nzbget
+ADD nzbget.sh /etc/service/nzbget/run
+RUN chmod +x /etc/service/nzbget/run

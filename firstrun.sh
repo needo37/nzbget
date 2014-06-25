@@ -4,10 +4,8 @@
 if [ -f /config/nzbget.conf ]; then
   echo "nzbget.conf exists"
 else
-  cp /usr/share/doc/nzbget/examples/nzbget.conf.gz /config/
-  gzip -d /config/nzbget.conf.gz
+  cp /tmp/nzbget.conf /config/
+  chown nobody:users /config/nzbget.conf
   mkdir -p /downloads/dst
+  chown -R nobody:users /downloads
 fi
-
-# Start nzbget
-nzbget -D -c /config/nzbget.conf
