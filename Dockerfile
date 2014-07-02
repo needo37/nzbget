@@ -14,7 +14,7 @@ RUN usermod -g 100 nobody
 
 RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty universe multiverse"
 RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates universe multiverse"
-RUN add-apt-repository "deb http://ppa.launchpad.net/jon-severinsson/ffmpeg/ubuntu trusty main"
+RUN add-apt-repository ppa:jon-severinsson/ffmpeg
 RUN apt-get update -q
 RUN apt-get install -qy unrar nzbget ffmpeg
 
