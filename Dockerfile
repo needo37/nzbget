@@ -14,8 +14,8 @@ RUN usermod -g 100 nobody
 
 ADD sources.list /etc/apt/
 RUN add-apt-repository ppa:jon-severinsson/ffmpeg
-RUN apt-get update -q
-RUN apt-get install -qy unrar ffmpeg nzbget
+RUN apt-get update -qq
+RUN apt-get install -qy ffmpeg nzbget wget unrar unzip p7zip
 
 #Path to a directory that only contains the nzbget.conf
 VOLUME /config
