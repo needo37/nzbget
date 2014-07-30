@@ -12,11 +12,10 @@ CMD ["/sbin/my_init"]
 RUN usermod -u 99 nobody
 RUN usermod -g 100 nobody
 
-RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty universe multiverse"
-RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates universe multiverse"
+ADD sources.list /etc/apt/
 RUN add-apt-repository ppa:jon-severinsson/ffmpeg
-RUN apt-get update -q
-RUN apt-get install -qy unrar nzbget ffmpeg
+RUN apt-get update -qq
+RUN apt-get install -qy ffmpeg nzbget wget unrar unzip p7zip
 
 #Path to a directory that only contains the nzbget.conf
 VOLUME /config
@@ -24,8 +23,9 @@ VOLUME /downloads
 
 EXPOSE 6789
 
-# Install sample nzbget.conf if needed
-ADD nzbget.conf /tmp/nzbget.conf
+# Add edge.sh to execute during container startup
+ADD edge.sh /etc/my_init.d/edge.sh
+RUN chmod +x /etc/my_init.d/edge.sh
 
 # Add firstrun.sh to execute during container startup
 RUN mkdir -p /etc/my_init.d
