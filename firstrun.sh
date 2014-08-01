@@ -20,14 +20,17 @@ fi
 # Verify and create come directories
 if [[ ! -e /config/queue ]]; then
   mkdir -p /config/queue
+  chown -R nobody:users /config/queue
 fi
 
 if [[ ! -e /config/log ]]; then
   mkdir -p /config/log
+  chown -R nobody:users /config/log
 fi
 
 if [[ ! -e /config/ppscripts ]]; then
-  mkdir -p config/ppscripts
+  mkdir -p /config/ppscripts
+  chown -R nobody:users /config/ppscripts
 fi
 
 # Add some post-processing scripts
