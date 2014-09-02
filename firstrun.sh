@@ -45,9 +45,9 @@ fi
 if [[ ! -e /config/ppscripts/videosort ]]; then
   echo "Downloading videosort."
   mkdir -p /config/ppscripts/videosort
-  wget -nv http://sourceforge.net/projects/nzbget/files/ppscripts/videosort/videosort-ppscript-4.0.zip/download -O /config/ppscripts/videosort-ppscript-4.0.zip
-  unzip -qq /config/ppscripts/videosort-ppscript-4.0.zip
-  rm /config/ppscripts/videosort-ppscript-4.0.zip
+  wget -nv http://sourceforge.net/projects/nzbget/files/ppscripts/videosort/videosort-ppscript-5.0.zip/download -O /config/ppscripts/videosort-ppscript-5.0.zip
+  unzip -qq /config/ppscripts/videosort-ppscript-5.0.zip
+  rm /config/ppscripts/videosort-ppscript-5.0.zip
 fi
 
 # NotifyXBMC.py
