@@ -53,5 +53,5 @@ fi
 # NotifyXBMC.py
 if [[ ! -e /config/ppscripts/NotifyXBMC.py ]]; then
   echo "Downloading NotifyXBMC."
-  wget -nv http://nzbget.net/forum/download/file.php?id=193 -O /config/ppscripts/NotifyXBMC.py
+  wget -nv http://forum.nzbget.net/download/file.php?id=193 -O /config/ppscripts/NotifyXBMC.py
 fi
