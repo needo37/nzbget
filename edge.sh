@@ -23,25 +23,12 @@ compile_libpar2(){
 
 if [[ -n $EDGE ]]; then
   echo "Compiling from source."
-  # Set SVN to version, revision or trunk
-  regex_version="[0-9]{2}\.[0-9]*?"
-  regex_revision="[0-9]{4}"
-  if [[ $EDGE =~ $regex_version ]]; then
-    SVN="svn://svn.code.sf.net/p/nzbget/code/tags/${EDGE}"
-    echo "Checking out version ${EDGE}"
-  elif [[ $EDGE =~ $regex_revision ]]; then
-    SVN="-r ${EDGE} svn://svn.code.sf.net/p/nzbget/code/trunk"
-    echo "Checking out revision $EDGE"
-  else
-    SVN="svn://svn.code.sf.net/p/nzbget/code/trunk"
-    echo "Checking out the trunk version"
-  fi
 
   # Install build dependencies
   {
     apt-get update -qq
     apt-get remove -y nzbget libpar2-1
-    apt-get install -qy libncurses5-dev sigc++ libssl-dev libxml2-dev sigc++ build-essential subversion
+    apt-get install -qy libncurses5-dev sigc++ libssl-dev libxml2-dev sigc++ build-essential git
   } &> /config/nzbget-${EDGE}-compile.log
 
   # Patch and compile libpar2
@@ -52,10 +39,14 @@ if [[ -n $EDGE ]]; then
   echo "Start building nzbget"
   {
     # Checkout the source code
-    svn checkout ${SVN} /tmp/nzbget-source
+    git clone https://github.com/nzbget/nzbget.git /tmp/nzbget-source
 
     # Build and install the source code
     cd /tmp/nzbget-source
+
+    # Checkout whatever branch/tag/commit was provided
+    git checkout $EDGE	
+
     ./configure --prefix=/usr --enable-parcheck
     make -j5
     make install
