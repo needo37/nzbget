@@ -10,13 +10,13 @@ If using nzbget for the first time the sample nzbget.conf will be utilized and t
 
 Edge
 ----
-If you would like to run a forthcoming version, please set the EDGE variable with the XX.X format (e.g. 13.0):
+If you would like to run a forthcoming version, please set the EDGE variable with the name of the tag, vXX.X format (e.g. v13.0), see https://github.com/nzbget/nzbget:
 ```
 docker run -d --name="nzbget" -e EDGE="13.0" -v /path/to/dir/with/nzbget.conf:/config -v /path/to/downloads:/downloads -v /etc/localtime:/etc/localtime:ro -p 6789:6789 needo/nzbget
 ```
 
-To use a test revision, please set the EDGE variable with the XXXX format (e.g. 1070):
+To use a test commit, please set the EDGE variable with the XXXXXXX format (e.g. d48a165):
 
 ```
-docker run -d --name="nzbget" -e EDGE="1070" -v /path/to/dir/with/nzbget.conf:/config -v /path/to/downloads:/downloads -v /etc/localtime:/etc/localtime:ro -p 6789:6789 needo/nzbget
+docker run -d --name="nzbget" -e EDGE="d48a165" -v /path/to/dir/with/nzbget.conf:/config -v /path/to/downloads:/downloads -v /etc/localtime:/etc/localtime:ro -p 6789:6789 needo/nzbget
 ```
