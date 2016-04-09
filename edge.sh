@@ -29,6 +29,15 @@ if [[ -n $EDGE ]]; then
     apt-get update -qq
     apt-get remove -y nzbget libpar2-1
     apt-get install -qy libncurses5-dev sigc++ libssl-dev libxml2-dev sigc++ build-essential git
+    add-apt-repository ppa:ubuntu-toolchain-r/test
+    apt-get update -qq
+    apt-get install gcc-4.9 g++-4.9 cpp-4.9
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 40 --slave /usr/bin/gcc gcc /usr/bin/gcc-4.9
+    update-alternatives --config gcc
+    update-alternatives --install /usr/bin/cpp cpp /usr/bin/cpp-4.9 40 --slave /usr/bin/cpp cpp /usr/bin/cpp-4.9
+    update-alternatives --config cpp
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 40 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
+    update-alternatives --config g++
   } &> /config/nzbget-${EDGE}-compile.log
 
   # Patch and compile libpar2

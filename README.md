@@ -10,9 +10,9 @@ If using nzbget for the first time the sample nzbget.conf will be utilized and t
 
 Edge
 ----
-If you would like to run a forthcoming version, please set the EDGE variable with the name of the tag, vXX.X format (e.g. v13.0), see https://github.com/nzbget/nzbget:
+If you would like to run a forthcoming version, please set the EDGE variable with the name of the tag, vXX.X format (e.g. v16.4), see https://github.com/nzbget/nzbget:
 ```
-docker run -d --name="nzbget" -e EDGE="13.0" -v /path/to/dir/with/nzbget.conf:/config -v /path/to/downloads:/downloads -v /etc/localtime:/etc/localtime:ro -p 6789:6789 needo/nzbget
+docker run -d --name="nzbget" -e EDGE="v16.4" -v /path/to/dir/with/nzbget.conf:/config -v /path/to/downloads:/downloads -v /etc/localtime:/etc/localtime:ro -p 6789:6789 needo/nzbget
 ```
 
 To use a test commit, please set the EDGE variable with the XXXXXXX format (e.g. d48a165):
